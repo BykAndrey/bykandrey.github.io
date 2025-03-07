@@ -1,0 +1,19 @@
+.slider {
+    // display: flex;
+}
+.values {
+    display: flex;
+    justify-content: space-between
+}
+.value {
+    display: flex;
+    justify-content: center;
+    flex: 1 0 30%;
+}
+
+.valueMin{
+    justify-content: start;
+}
+.valueMax {
+    justify-content: end;
+}

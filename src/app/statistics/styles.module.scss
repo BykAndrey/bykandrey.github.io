@@ -1,0 +1,17 @@
+.page h1 {
+    text-align: center;
+}
+
+.listItem {
+    padding: 15px;
+    
+}
+.listItem:not(:last-child) {
+    border-bottom: 2px solid rgba(255,255,255, 0.3);
+}
+
+.list {
+    list-style: none;
+    border: 2px solid rgba(255,255,255, 0.3);
+    border-radius: 15px;
+}

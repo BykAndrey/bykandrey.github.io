@@ -1,0 +1,132 @@
+
+.container {
+    position: relative;
+
+}
+.controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    background-color: black;
+    padding: 15px;
+    @media screen and (max-width: 768px) {
+        & {
+            flex-wrap: wrap;
+        }
+        .controlsElement  {
+            flex: 0 0 100%
+        }
+    }
+}
+.controlsElement {
+    margin: 0 10px;
+    flex: 0 0 40%
+}
+.map {
+    position: relative;
+    z-index: 1;
+}
+
+.infoBlock {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    right: 15px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: 0.3s;
+}
+.infoBlock--compare-active {
+    bottom: calc(100% + 105px);
+}
+.infoBlockShow {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+
+
+.compareBtn {
+    margin-top: 10px;
+    padding: 10px;
+    text-transform:uppercase;
+}
+
+.controlsStatSelector {
+    position: absolute;
+    bottom: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+.controlsStatSelectorActive {
+    bottom: calc(100% + 10px);
+    opacity: 1;
+}
+.chart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    transition: 0.3s;
+    z-index: 1;
+    container-name: hero-banner;
+    container-type: inline-size;
+    pointer-events: none;
+
+}
+.chartLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    transition: 0.3s;
+    container-name: hero-banner;
+    container-type: inline-size;
+    pointer-events: none;
+}
+.chartLeft:hover, .chart:hover {
+    background-color: rgba(0    , 0, 0, 0.5);
+}
+@media screen and (max-width: 1024px) {
+    .chartLeft, .chart {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chartLeft, .chart {
+        width: 45%;
+    }
+}
+.countryChart {
+    position: absolute;
+    bottom: 0;
+    height: 250px;
+    width: 100%;
+    left: 0;
+    top: auto;
+    opacity: 0;
+    transition: 0.3s;
+    background-color: rgba(0,0,0, 0.5);
+}
+.countryChartActive {
+    bottom: 100%;
+    opacity: 1;
+}
+
+.listStatToggle {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    cursor: pointer;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;;
+}

@@ -1,0 +1,37 @@
+.leaflet-container {
+    background: transparent;
+    height: 100%;
+}
+
+
+.my-div-icon{
+     height: 10px;
+     width: 10px;
+     background: red;
+}
+.label {
+    pointer-events: none;
+    border: 1px solid red;
+    text-align: center;
+    // display: none;
+    &--hidden {
+        // display: none;
+    }
+    
+}
+
+.polygon-tooltip{
+    background-color: transparent;
+    border: none;
+    // color: #3388ff;
+    color: white;
+    box-shadow: none;
+    font-weight: 600;
+    font-size: 14px;;
+    text-shadow: 2px 2px 6px black;
+    text-transform: uppercase;
+}
+
+.leaflet-container path:focus{
+    outline: none;
+}

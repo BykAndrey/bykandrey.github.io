@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  background-color: transparent;
+  // font-size: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.left:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // border: 1px solid red;
+  border-left: 3px solid white;
+  border-top: 3px solid white;
+
+  height: 15px;
+  width: 15px;
+  transform: rotate(-45deg) translate(-50%, -50%);
+  transform-origin: 0 0 0;
+}
+
+.right {
+  @extend .left;
+  &:before {
+    transform: rotate(135deg) translate(-50%, -50%);
+    transform-origin: 0 0 0;
+  }
+}
+
+.dummy-value {
+  opacity: 0;
+  transition: 0.3s;
+}
+.value {
+ 
+  position: relative;
+  height: 100%;
+  div {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.value-style {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 5px;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.value-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.float-value {
+  position: absolute;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+    height: 100%;
+
+}
+
+.float-value--left {
+  .value {
+    transition: 0.3s;
+    transform: translateX(-100%);
+  }
+}
+.float-value--right {
+  .value {
+    transition: 0.3s;
+    transform: translateX(100%);
+  }
+}
