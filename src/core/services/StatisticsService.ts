@@ -1,5 +1,6 @@
 import allStats from '@/assets/data/all.json';
 import statisticsData from '@/assets/data/statisticsData.json';
+import { PUBLIC_BASE_URL } from '@/config';
 
 
 export interface CountryData {
@@ -65,7 +66,7 @@ class StatisticsService {
         if (this.isAllLoaded()) {
             return this.collection[countryCode];
         }
-        const url = `http://localhost:3000/data/${this.statisticsCode}/${countryCode}.json`;
+        const url = PUBLIC_BASE_URL +`/data/${this.statisticsCode}/${countryCode}.json`;
 
 
         return this.fetch.fetch(url, () => {
@@ -79,7 +80,7 @@ class StatisticsService {
         if (this.isAllLoaded()) {
             return this.collection
         }
-        const url = `http://localhost:3000/data/${this.statisticsCode}/all.json`;
+        const url = PUBLIC_BASE_URL +`/data/${this.statisticsCode}/all.json`;
         return this.fetch.fetch(url, () => {
             return fetch(url).then(r => r.json()).then((data: Record<string, CountryData>) => {
                 this.collection = data;

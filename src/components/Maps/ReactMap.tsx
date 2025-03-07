@@ -11,9 +11,10 @@ import './Map.scss'
 
 import React, { useEffect, useMemo } from 'react'
 import { LeafletEventHandlerFnMap, PathOptions } from 'leaflet'
+import { PUBLIC_BASE_URL } from '@/config'
 
 function loadBorders() {
-    return fetch(`http://192.168.100.11:3001/load/World`).then((res) => res.json())
+    return fetch(PUBLIC_BASE_URL +'/data/World.json').then((res) => res.json())
 }
 
 function Country(props: {
