@@ -88,11 +88,14 @@ const STAT_TITLES: { [key: string]: string } = {
     'SP.DYN.CDRT.IN': 'Death rate, crude (per 1,000 people)',
     'SP.POP.TOTL': 'Population',
 }
+interface Props {
+    id? : string
+}
 // type FromPromise<P> = P extends Promise<infer T> ? T : never
-class Blog extends React.Component<object, State, object> {
-    constructor(props: object) {
+class Blog extends React.Component<Props, State, object> {
+    constructor(props: Props) {
         super(props)
-        const statisticName = 'SP.POP.TOTL'
+        const statisticName = props.id ?? 'SP.POP.TOTL';
         this.state = {
             inited: false,
             year: 2022,

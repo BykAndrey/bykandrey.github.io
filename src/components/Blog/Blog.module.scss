@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
-    background-color: black;
+    background-color: var(--background);
     padding: 15px;
     @media screen and (max-width: 768px) {
         & {
@@ -112,10 +112,12 @@
     opacity: 0;
     transition: 0.3s;
     background-color: rgba(0,0,0, 0.5);
+    pointer-events: none;
 }
 .countryChartActive {
     bottom: 100%;
     opacity: 1;
+    pointer-events: all;
 }
 
 .listStatToggle {
@@ -126,7 +128,9 @@
     z-index: 1;
     cursor: pointer;
     background: none;
-    color: white;
+
     border: none;
-    border-bottom: 2px solid white;;
+    border-bottom: 2px solid white;
+    color: var(--foreground);
+    border-color: var(--foreground);
 }
