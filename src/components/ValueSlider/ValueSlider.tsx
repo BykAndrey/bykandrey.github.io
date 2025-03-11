@@ -17,7 +17,7 @@ export default class ValueSlider extends React.Component<Props,{value:number}> {
             value: props.value
         }
     }
-    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+    componentDidUpdate(): void {
         if (this.props.value !== this.state.value) {
             this.setState({
                 value: this.props.value

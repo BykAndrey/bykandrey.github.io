@@ -37,7 +37,7 @@ function loadBorders() {
 //     return null
 // }
 
-function Country(props: {
+function Country(props: Readonly<{
     id: string
     feature: GeoJSON.Feature
     defaultStyles: PathOptions
@@ -45,7 +45,7 @@ function Country(props: {
     isActive: boolean,
     value: number,
     onClick?: (code: string | null, feature: object) => void
-}) {
+}>) {
     // const [features, setFeatures] = useState<GeoJSON.Feature[]>(() => {
     //     if (props.feature?.geometry.type === 'MultiPolygon') {
     //         const polygons = flatten(props.feature);
@@ -54,7 +54,7 @@ function Country(props: {
     //         return [props.feature]
     //     }
     // })
-    const map = new Map()
+    // const map = new Map()
 
     const handlerCountry = useMemo<LeafletEventHandlerFnMap>(
         () => ({
@@ -68,7 +68,7 @@ function Country(props: {
                 event.sourceTarget.setStyle(props.defaultStyles)
             },
         }),
-        [map, props],
+        [props],
     )
 
     // useEffect(() => {
