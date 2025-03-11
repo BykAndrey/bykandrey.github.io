@@ -1,0 +1,18 @@
+.header {
+    border-bottom: 2px solid white
+}
+
+.nav {
+
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.menuItem {
+    a {
+        display: block;
+        padding: 5px 10px;
+    }
+}

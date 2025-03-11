@@ -1,11 +1,14 @@
+import { Header } from '@/components/Header/Header'
 
 export default function Layout({
     children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+}: Readonly<{
+    children: React.ReactNode
+}>) {
     return (
-      <div className="container">{children}</div>
-    );
-  }
-  
+        <>
+            <Header />
+            <div className="container">{children}</div>
+        </>
+    )
+}

@@ -6,8 +6,10 @@ export const Header = () => {
         <div className={
             "container "+ styles.container
         }>
-            <div className={styles.logo}>logo</div>
+            {/* <div className={styles.logo}>logo</div> */}
+            <div className={styles.menu}>
             <Menu/>
+            </div>
         </div>
     </header>
 }

@@ -1,14 +1,22 @@
 {
     "SH.DTH.IMRT": {
         "name": "Number of infant deaths",
-        "description": ""
+        "description": "",
+        "tags": []
     },
     "SP.DYN.CDRT.IN": {
         "name": "Death rate, crude (per 1,000 people)",
-        "description": ""
+        "description": "",
+        "tags": []
     },
     "SP.POP.TOTL": {
         "name": "Population, total",
-        "description": ""
+        "description": "",
+        "tags": []
+    },
+    "SH.STA.TRAF.P5": {
+        "name": "Mortality caused by road traffic injury (per 100,000 population)",
+        "description": "",
+        "tags": []
     }
 }

@@ -49,5 +49,14 @@ export default {
             step: 1,
             format: formatNumber,
         }
+    },
+    'SH.STA.TRAF.P5': {
+        name: 'Mortality caused by road traffic injury (per 100,000 population)',
+        mainValue: {
+            better: 'large',
+            inputLabel: 'Mortality caused by road traffic injury (per 100,000 population)',
+            step: 1,
+            format: formatNumber,
+        }
     }
 } as Record<string, StatisticSettings>

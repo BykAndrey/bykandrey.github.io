@@ -1,12 +1,11 @@
 
 
-import Blog from "@/components/Blog/Blog";
-// import { GetStaticPaths } from "next";
+import MapPage from "@/components/MapPage/MapPage";
 
 
 export default async function Page({params}: {params: Promise<{id:string}>}) {
   const {id }= await params;
-  return <Blog id={id} />
+  return <MapPage id={id} />
 }
 
 export async function generateStaticParams() {

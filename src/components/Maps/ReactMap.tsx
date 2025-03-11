@@ -12,10 +12,30 @@ import './Map.scss'
 import React, { useEffect, useMemo } from 'react'
 import { LeafletEventHandlerFnMap, PathOptions } from 'leaflet'
 import { PUBLIC_BASE_URL } from '@/config'
-
+// import L from 'leaflet'
+// import { flatten } from '@turf/turf'
 function loadBorders() {
-    return fetch(PUBLIC_BASE_URL +'/data/World.json').then((res) => res.json())
+    return fetch(PUBLIC_BASE_URL + '/data/World.json').then((res) => res.json())
 }
+
+// const NumberMarker = ({ number, position }) => {
+//     const map = useMap()
+
+//     const div = L.DomUtil.create('div', 'number-marker')
+//     div.innerHTML = number
+
+//     L.DomEvent.disableClickPropagation(div)
+
+//     const marker = L.marker(position, {
+//         icon: L.divIcon({
+//             html: div,
+//             className: 'number-marker',
+//             iconSize: [30, 30],
+//         }),
+//     }).addTo(map)
+
+//     return null
+// }
 
 function Country(props: {
     id: string
@@ -23,10 +43,19 @@ function Country(props: {
     defaultStyles: PathOptions
     hoverStyles: PathOptions
     isActive: boolean,
+    value: number,
     onClick?: (code: string | null, feature: object) => void
 }) {
-    const map = new Map();
-    
+    // const [features, setFeatures] = useState<GeoJSON.Feature[]>(() => {
+    //     if (props.feature?.geometry.type === 'MultiPolygon') {
+    //         const polygons = flatten(props.feature);
+    //         return polygons.features as GeoJSON.Feature[]
+    //     } else if (props.feature?.geometry.type === 'Polygon') {
+    //         return [props.feature]
+    //     }
+    // })
+    const map = new Map()
+
     const handlerCountry = useMemo<LeafletEventHandlerFnMap>(
         () => ({
             click: () => {
@@ -41,6 +70,34 @@ function Country(props: {
         }),
         [map, props],
     )
+
+    // useEffect(() => {
+    //     if (props.feature?.geometry.type === 'MultiPolygon') {
+    //         const polygons = flatten(props.feature);
+    //         setFeatures(polygons.features as GeoJSON.Feature[])
+    //     } else if (props.feature?.geometry.type === 'Polygon') {
+    //         setFeatures([props.feature])
+    //     }
+    // }, [props.feature]);
+
+    // if (features.length === 0) return null
+    // return features.map((p, index) => {
+    //     return (
+    //         <GeoJSON
+    //             key={props.id + '-' + index}
+    //             data={p}
+    //             style={props.isActive ? props.hoverStyles : props.defaultStyles}
+    //             eventHandlers={handlerCountry}
+    //         >
+    //             {/* {' '} */}
+    //             {/* <NumberMarker number={1} position={[0, 0]} /> */}
+    //             <Tooltip sticky direction="top">
+    //                 {props.feature.properties?.['name_en']} : {props.value}
+    //             </Tooltip>
+    //         </GeoJSON>
+    //     )
+    // })
+
     return (
         <GeoJSON
             data={props.feature}
@@ -48,7 +105,7 @@ function Country(props: {
             eventHandlers={handlerCountry}
         >
             <Tooltip sticky direction="top">
-                {props.feature.properties?.['name_en']}
+                {props.feature.properties?.['name_en']} : {props.value}
             </Tooltip>
         </GeoJSON>
     )
@@ -60,10 +117,10 @@ function ReactMap(props: {
     negativeColor?: string
     invertColors?: boolean
     activeValue: string | null
+    isShowValues?: number
+    borders: GeoJSON.FeatureCollection
     onCountryClick?: (countryCode: string | null) => void
 }) {
-    const [borders, setBorders] = React.useState<GeoJSON.FeatureCollection>()
-
     const [countryStyles, setCountryStyles] = React.useState<
         Record<string, { default: PathOptions; hover: PathOptions }>
     >({})
@@ -73,11 +130,6 @@ function ReactMap(props: {
     }>({ min: Infinity, max: -Infinity })
 
     const map = useMap()
-    useEffect(() => {
-        loadBorders().then((borders) => {
-            setBorders(borders as GeoJSON.FeatureCollection)
-        })
-    }, [])
 
     useEffect(() => {
         const minMax = Object.values(props.data).reduce(
@@ -104,16 +156,17 @@ function ReactMap(props: {
     const handlerMap = useMemo<LeafletEventHandlerFnMap>(
         () => ({
             add(event) {
-                map.fitBounds(event.sourceTarget.getBounds())
+                const v = event.sourceTarget.getBounds()
+                if (v) map.fitBounds(v)
             },
         }),
         [map],
     )
 
     useEffect(() => {
-        if (!borders) return
+        if (!props.borders) return
 
-        const styles = borders.features.reduce(
+        const styles = props.borders.features.reduce(
             (acc, feature) => {
                 if (!feature) return acc
                 const name = feature?.properties?.['name_en']
@@ -193,31 +246,28 @@ function ReactMap(props: {
             {} as Record<string, { default: PathOptions; hover: PathOptions }>,
         )
         setCountryStyles(styles)
-    }, [borders, minMaxValue, props.data, props.perfectValue])
-
-    if (!borders) return <></>
+    }, [props.borders, minMaxValue, props.data, props.perfectValue])
     return (
-        <>
-            <FeatureGroup eventHandlers={handlerMap}>
-                {borders.features.map((feature) => {
-                    const name = feature?.properties?.['name_en'] || null
-                    const code = feature?.properties?.['adm0_a3'] || null
-                    if (!name || !code) return
-                    const styles = countryStyles[name] || {}
-                    return (
-                        <Country
-                            key={name}
-                            id={code}
-                            feature={feature}
-                            isActive={props.activeValue === code}
-                            defaultStyles={styles.default}
-                            hoverStyles={styles.hover}
-                            onClick={props.onCountryClick}
-                        />
-                    )
-                })}
-            </FeatureGroup>
-        </>
+        <FeatureGroup eventHandlers={handlerMap}>
+            {props.borders.features.map((feature) => {
+                const name = feature?.properties?.['name_en'] || null
+                const code = feature?.properties?.['adm0_a3'] || null
+                if (!name || !code) return
+                const styles = countryStyles[name] || {}
+                return (
+                    <Country
+                        key={name}
+                        id={code}
+                        feature={feature}
+                        isActive={props.activeValue === code}
+                        defaultStyles={styles.default}
+                        hoverStyles={styles.hover}
+                        onClick={props.onCountryClick}
+                        value={props.data[code]?.value}
+                    />
+                )
+            })}
+        </FeatureGroup>
     )
 }
 
@@ -225,12 +275,21 @@ export interface MapProps {
     data: { [key: string]: { value: number } }
     perfectValue: number
     positiveColor?: string
-    negativeColor?: string,
-    invertColors?: boolean,
-    activeValue: string | null,
+    negativeColor?: string
+    invertColors?: boolean
+    activeValue: string | null
+    isShowValues?: number
     onCountryClick?: (key: string | null) => void
 }
 function ReactMapContainer(props: MapProps) {
+    const [borders, setBorders] = React.useState<GeoJSON.FeatureCollection>()
+
+    useEffect(() => {
+        loadBorders().then((borders) => {
+            setBorders(borders as GeoJSON.FeatureCollection)
+        })
+    }, [])
+    if (!borders) return null
     return (
         <div className={st.map}>
             <MapContainer
@@ -245,7 +304,9 @@ function ReactMapContainer(props: MapProps) {
                     positiveColor={props.positiveColor}
                     negativeColor={props.negativeColor}
                     invertColors={props.invertColors}
+                    isShowValues={props.isShowValues}
                     activeValue={props.activeValue}
+                    borders={borders}
                     onCountryClick={props.onCountryClick}
                 />
             </MapContainer>

@@ -10,10 +10,30 @@ interface Props {
     onChange: (value: number | number[]) => void
     formatValue?: (value: number) => string
 }
-export default class ValueSlider extends React.Component<Props> {
+export default class ValueSlider extends React.Component<Props,{value:number}> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            value: props.value
+        }
+    }
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+        if (this.props.value !== this.state.value) {
+            this.setState({
+                value: this.props.value
+            })
+        }
+    }
     formatValue(v: number): string {
         if (!this.props.formatValue) return v.toString()
         return this.props.formatValue(v)
+    }
+    onChange = (v: number | number[]): void => {
+        if (typeof v === "number") {
+            this.setState({value: v})
+            this.props.onChange(v);
+        }
+    
     }
     render() {
         return (
@@ -25,11 +45,11 @@ export default class ValueSlider extends React.Component<Props> {
                 </div>
 
                 <Slider
-                    defaultValue={this.props.value}
+                    value={this.state.value}
                     min={this.props.min}
                     max={this.props.max}
                     step={this.props.step}
-                    onChange={this.props.onChange}
+                    onChange={this.onChange}
                 />
             </div>
         )
