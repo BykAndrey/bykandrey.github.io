@@ -18,5 +18,10 @@
         "name": "Mortality caused by road traffic injury (per 100,000 population)",
         "description": "",
         "tags": []
+    },
+    "SH.DYN.NMRT" :{
+        "name": "Mortality rate, neonatal (per 1,000 live births)",
+        "description": "",
+        "tags": []
     }
 }

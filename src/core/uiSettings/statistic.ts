@@ -58,5 +58,14 @@ export default {
             step: 1,
             format: formatNumber,
         }
+    },
+    "SH.DYN.NMRT": {
+        name: 'Mortality rate, neonatal (per 1,000 live births)',
+        mainValue: {
+            better: 'large',
+            inputLabel: 'Mortality rate, neonatal (per 1,000 live births)',
+            step: 1,
+            format: formatNumber,
+        }
     }
 } as Record<string, StatisticSettings>
