@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import st from './LineStat.module.scss'
+import { formatNumber } from '@/utils/formatNumber';
 interface Props {
     options: { title: string; value: number; color?: string }[]
     side?: string
@@ -37,7 +38,7 @@ const Option: React.FC<{
                         backgroundColor: props.color ?? 'red',
                     }}
                 >
-                    {props.value}
+                    {formatNumber(props.value)}
                 </div>
             </div>
         </div>

@@ -163,7 +163,6 @@ class MapPage extends React.Component<Props, State, object> {
             }
         }, {} as MapData)
         const charts = this.getCharts(data);
-        console.log('perfectValue',perfectValue)
         this.setState({
             year,
             statisticName,

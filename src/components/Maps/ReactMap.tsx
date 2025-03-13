@@ -12,6 +12,7 @@ import './Map.scss'
 import React, { useEffect, useMemo } from 'react'
 import { LeafletEventHandlerFnMap, PathOptions } from 'leaflet'
 import { PUBLIC_BASE_URL } from '@/config'
+import { formatNumber } from '@/utils/formatNumber'
 // import L from 'leaflet'
 // import { flatten } from '@turf/turf'
 function loadBorders() {
@@ -105,7 +106,7 @@ function Country(props: Readonly<{
             eventHandlers={handlerCountry}
         >
             <Tooltip sticky direction="top">
-                {props.feature.properties?.['name_en']} : {props.value}
+                {props.feature.properties?.['name_en']} : {formatNumber(props.value)}
             </Tooltip>
         </GeoJSON>
     )

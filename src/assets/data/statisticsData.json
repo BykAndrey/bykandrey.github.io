@@ -2,26 +2,56 @@
     "SH.DTH.IMRT": {
         "name": "Number of infant deaths",
         "description": "",
-        "tags": []
+        "tags":  ["Health"],
+        "meta": {
+            "title": "Infant Mortality Statistics by Country - Global Data",
+            "description": "Explore the number of infant deaths worldwide with country-wise data, trends, and insights.",
+            "keywords": "infant deaths, infant mortality, child mortality, birth survival rate, global infant death rate",
+            "canonical": "https://geomapstats.com/map/SH.DTH.IMRT"
+          }
     },
     "SP.DYN.CDRT.IN": {
         "name": "Death rate, crude (per 1,000 people)",
         "description": "",
-        "tags": []
+        "tags":  ["Health"],
+        "meta": {
+            "title": "Global Death Rate by Country - Annual Mortality Trends",
+            "description": "Check out the crude death rate per 1,000 people across different countries with real-time data.",
+            "keywords": "death rate, crude death rate, mortality rate, death statistics, world death rate",
+            "canonical": "https://geomapstats.com/map/SP.DYN.CDRT.IN"
+          }
     },
     "SP.POP.TOTL": {
         "name": "Population, total",
         "description": "",
-        "tags": []
+        "tags":  ["Health"],
+        "meta": {
+            "title": "World Population by Country - Live Population Data",
+            "description": "Discover the total population of each country, historical trends, and population growth rates.",
+            "keywords": "world population, total population, country population, population growth, census data",
+            "canonical": "https://geomapstats.com/map/SP.POP.TOTL"
+          }
     },
     "SH.STA.TRAF.P5": {
         "name": "Mortality caused by road traffic injury (per 100,000 population)",
         "description": "",
-        "tags": []
+        "tags":  ["Health"],
+        "meta":  {
+            "title": "Road Traffic Fatalities by Country - Accident Mortality",
+            "description": "View data on deaths caused by road traffic accidents per 100,000 people worldwide.",
+            "keywords": "road deaths, traffic accident deaths, road safety, car accident mortality, crash statistics",
+            "canonical": "https://geomapstats.com/map/SH.STA.TRAF.P5"
+          }
     },
     "SH.DYN.NMRT" :{
         "name": "Mortality rate, neonatal (per 1,000 live births)",
         "description": "",
-        "tags": []
+        "tags": ["Health"],
+        "meta": {
+            "title": "Neonatal Mortality Rate by Country - Infant Survival Statistics",
+            "description": "Find neonatal mortality rates per 1,000 live births across different countries and regions.",
+            "keywords": "neonatal mortality, newborn deaths, infant health, birth survival rate, perinatal mortality",
+            "canonical": "https://geomapstats.com/map/SH.DYN.NMRT"
+          }
     }
 }

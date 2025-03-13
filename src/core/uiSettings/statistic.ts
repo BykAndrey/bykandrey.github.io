@@ -1,3 +1,5 @@
+import { formatNumber } from "@/utils/formatNumber";
+
 interface StatisticSettings {
     name: string;
     mainValue: {
@@ -8,19 +10,7 @@ interface StatisticSettings {
     }
 }
 
-function formatNumber(v:number): string {
-    return Math.ceil(v)
-    .toString()
-    .split('')
-    .reverse()
-    .map((l, index) => {
-        if ((index + 1) % 3 === 0 && v.toString().length !== index + 1)
-            return ',' + l
-        return l
-    })
-    .reverse()
-    .join('')
-}
+
 
 export default {
     'SP.POP.TOTL' :{

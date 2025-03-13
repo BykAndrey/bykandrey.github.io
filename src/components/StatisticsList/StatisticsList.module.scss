@@ -1,0 +1,32 @@
+.listItem {
+    padding: 15px;
+    
+}
+.listItem:not(:last-child) {
+    border-bottom: 2px solid rgba(255,255,255, 0.3);
+}
+
+.list {
+    list-style: none;
+    border: 2px solid rgba(255,255,255, 0.3);
+    border-radius: 15px;
+}
+.name {
+    font-size: 16px;
+    margin-right: 10px;
+}
+.description {
+    // margin-bottom: 10px;
+}
+.tags {
+    display: inline-block;
+}
+.tag {
+    color: var(--foreground);
+    display: inline-block;
+    font-size: 12px;
+    text-transform: lowercase;
+    border: 1px solid var(--foreground);
+    padding: 3px 10px;
+    border-radius: 15px;
+}

@@ -18,7 +18,6 @@ export interface CountryYearData extends Omit<CountryData, 'years'> {
 class FetchCache {
     cache: { [key: string]: Promise<unknown> | undefined } = {}
     fetch<T>(key: string, fn: () => Promise<T>): Promise<T> {
-        console.log(key, this.cache[key])
         if (this.cache[key]) return this.cache[key] as Promise<T>;
         this.cache[key] = fn();
         return this.cache[key] as Promise<T>;
@@ -50,6 +49,7 @@ class StatisticsService {
         id: string,
         name: string;
         description: string;
+        tags: string[]
     }[]> {
         return Object.entries(statisticsData).map(([key, value]) => {
             return {
