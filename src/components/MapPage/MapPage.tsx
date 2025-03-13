@@ -143,7 +143,6 @@ class MapPage extends React.Component<Props, State, object> {
                 )
             },
         )
-        console.log(allStats)
         const service = allStats[statisticName]
         if (!service) return
 
