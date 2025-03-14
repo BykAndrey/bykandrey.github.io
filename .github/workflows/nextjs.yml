@@ -75,7 +75,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         env: 
-          NEXT_PUBLIC_BASE_URL: ${{vars.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_BASE_URL: https://geomapstats.com
         run: npm run build 
         # ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
