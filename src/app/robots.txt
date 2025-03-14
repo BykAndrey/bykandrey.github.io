@@ -3,3 +3,5 @@ Disallow:
 
 User-agent: *
 Disallow: /public/
+
+Sitemap: https://geomapstats.com/sitemap/0.xml
