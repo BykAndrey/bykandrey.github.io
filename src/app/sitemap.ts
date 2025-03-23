@@ -17,24 +17,24 @@ export default async function sitemap({
   const data = await StatisticsService.getStatisticsInfo();
   const date = new Date().toISOString().split('T')[0];
   const maps = Object.values(data).map((d) => ({
-    url: `${PUBLIC_BASE_URL}/map/${d.id}`,
+    url: `https:${PUBLIC_BASE_URL}/map/${d.id}`,
     lastModified: date,
     priority: 0.8
   }))
 
   return [
     {
-      url:  `${PUBLIC_BASE_URL}`,
+      url:  `https:${PUBLIC_BASE_URL}`,
       lastModified: date,
       priority: 1
     },
     {
-      url:  `${PUBLIC_BASE_URL}/statistics/`,
+      url:  `https:${PUBLIC_BASE_URL}/statistics/`,
       lastModified: date,
       priority: 0.9
     },
     {
-      url:  `${PUBLIC_BASE_URL}/map/`,
+      url:  `https:${PUBLIC_BASE_URL}/map/`,
       lastModified: date,
       priority: 0.8
     },
